@@ -27,6 +27,7 @@ class Form extends Component {
             onChange={ onInputChange }
             id="name-input"
             type="text"
+            name="cardName"
           />
         </label>
         <label htmlFor="description-input">
@@ -36,6 +37,7 @@ class Form extends Component {
             value={ cardDescription }
             onChange={ onInputChange }
             id="description-input"
+            name="cardDescription"
           />
         </label>
         <label htmlFor="attr1-input">
@@ -46,6 +48,7 @@ class Form extends Component {
             onChange={ onInputChange }
             type="number"
             id="attr1-input"
+            name="cardAttr1"
           />
         </label>
         <label htmlFor="attr2-input">
@@ -56,6 +59,7 @@ class Form extends Component {
             onChange={ onInputChange }
             type="number"
             id="attr2-input"
+            name="cardAttr2"
           />
         </label>
         <label htmlFor="attr3-input">
@@ -66,6 +70,7 @@ class Form extends Component {
             onChange={ onInputChange }
             type="number"
             id="attr3-input"
+            name="cardAttr3"
           />
         </label>
         <label htmlFor="image-input">
@@ -76,6 +81,7 @@ class Form extends Component {
             onChange={ onInputChange }
             type="text"
             id="image-input"
+            name="cardImage"
           />
         </label>
         <label htmlFor="rare-input">
@@ -85,6 +91,7 @@ class Form extends Component {
             value={ cardRare }
             onChange={ onInputChange }
             id="rare-input"
+            name="cardRare"
           >
             <option value="normal">Normal</option>
             <option value="raro">Raro</option>
@@ -100,6 +107,7 @@ class Form extends Component {
             onChange={ onInputChange }
             type="checkbox"
             id="trunfo-input"
+            name="cardTrunfo"
           />
         </label>
         <button
