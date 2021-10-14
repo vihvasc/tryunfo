@@ -28,6 +28,7 @@ class Form extends Component {
             id="name-input"
             type="text"
             name="cardName"
+            onKeyUp={ onSaveButtonClick }
           />
         </label>
         <label htmlFor="description-input">
@@ -38,6 +39,7 @@ class Form extends Component {
             onChange={ onInputChange }
             id="description-input"
             name="cardDescription"
+            onKeyUp={ onSaveButtonClick }
           />
         </label>
         <label htmlFor="attr1-input">
@@ -49,6 +51,7 @@ class Form extends Component {
             type="number"
             id="attr1-input"
             name="cardAttr1"
+            onKeyUp={ onSaveButtonClick }
           />
         </label>
         <label htmlFor="attr2-input">
@@ -60,6 +63,7 @@ class Form extends Component {
             type="number"
             id="attr2-input"
             name="cardAttr2"
+            onKeyUp={ onSaveButtonClick }
           />
         </label>
         <label htmlFor="attr3-input">
@@ -71,6 +75,7 @@ class Form extends Component {
             type="number"
             id="attr3-input"
             name="cardAttr3"
+            onKeyUp={ onSaveButtonClick }
           />
         </label>
         <label htmlFor="image-input">
@@ -82,6 +87,7 @@ class Form extends Component {
             type="text"
             id="image-input"
             name="cardImage"
+            onKeyUp={ onSaveButtonClick }
           />
         </label>
         <label htmlFor="rare-input">
