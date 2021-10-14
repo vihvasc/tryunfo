@@ -52,6 +52,8 @@ class Form extends Component {
             id="attr1-input"
             name="cardAttr1"
             onKeyUp={ onSaveButtonClick }
+            max="90"
+            min="0"
           />
         </label>
         <label htmlFor="attr2-input">
@@ -64,6 +66,8 @@ class Form extends Component {
             id="attr2-input"
             name="cardAttr2"
             onKeyUp={ onSaveButtonClick }
+            max="90"
+            min="0"
           />
         </label>
         <label htmlFor="attr3-input">
@@ -76,6 +80,8 @@ class Form extends Component {
             id="attr3-input"
             name="cardAttr3"
             onKeyUp={ onSaveButtonClick }
+            max="90"
+            min="0"
           />
         </label>
         <label htmlFor="image-input">

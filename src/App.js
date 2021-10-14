@@ -6,7 +6,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.onInputChange = this.onInputChange.bind(this);
-    this.onBtnChange = this.onBtnChange.bind(this);
+    this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
     this.state = {
       cardName: '',
       cardDescription: '',
@@ -28,7 +28,7 @@ class App extends React.Component {
     });
   }
 
-  onBtnChange(event) {
+  onSaveButtonClick(event) {
     event.preventDefault();
 
     const { cardAttr1,
@@ -63,7 +63,7 @@ class App extends React.Component {
         <Form
           { ... this.state }
           onInputChange={ this.onInputChange }
-          onSaveButtonClick={ this.onBtnChange }
+          onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card onInputChange={ this.onInputChange } { ...this.state } />
       </div>
