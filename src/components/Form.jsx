@@ -12,37 +12,35 @@ class Form extends Component {
       cardImage, /* string */
       cardRare, /* string */
       cardTrunfo, /* boolean */
-      /* hastrunfo, */ /* boolean */
+      hasTrunfo, /* boolean */
       isSaveButtonDisabled, /* boolean */
       onInputChange, /* callback */
       onSaveButtonClick, /* callback */
     } = this.props;
     return (
-      <div>
-        <label htmlFor="name-input">
+      <form>
+        <label htmlFor="cardName">
           Nome:
           <input
+            name="cardName"
             data-testid="name-input"
             value={ cardName }
             onChange={ onInputChange }
             id="name-input"
             type="text"
-            name="cardName"
-            onKeyUp={ onSaveButtonClick }
           />
         </label>
         <label htmlFor="description-input">
           Descrição:
           <textarea
-            data-testid="description-input"
+            data-testid="cardDescription"
             value={ cardDescription }
             onChange={ onInputChange }
             id="description-input"
             name="cardDescription"
-            onKeyUp={ onSaveButtonClick }
           />
         </label>
-        <label htmlFor="attr1-input">
+        <label htmlFor="cardAttr1">
           Atributo 1:
           <input
             data-testid="attr1-input"
@@ -51,12 +49,11 @@ class Form extends Component {
             type="number"
             id="attr1-input"
             name="cardAttr1"
-            onKeyUp={ onSaveButtonClick }
             max="90"
             min="0"
           />
         </label>
-        <label htmlFor="attr2-input">
+        <label htmlFor="cardAttr2">
           Atributo 2:
           <input
             data-testid="attr2-input"
@@ -65,12 +62,11 @@ class Form extends Component {
             type="number"
             id="attr2-input"
             name="cardAttr2"
-            onKeyUp={ onSaveButtonClick }
             max="90"
             min="0"
           />
         </label>
-        <label htmlFor="attr3-input">
+        <label htmlFor="cardAttr3">
           Atributo 3:
           <input
             data-testid="attr3-input"
@@ -79,7 +75,6 @@ class Form extends Component {
             type="number"
             id="attr3-input"
             name="cardAttr3"
-            onKeyUp={ onSaveButtonClick }
             max="90"
             min="0"
           />
@@ -87,16 +82,15 @@ class Form extends Component {
         <label htmlFor="image-input">
           Imagem:
           <input
-            data-testid="image-input"
+            data-testid="cardImage"
             value={ cardImage }
             onChange={ onInputChange }
             type="text"
             id="image-input"
             name="cardImage"
-            onKeyUp={ onSaveButtonClick }
           />
         </label>
-        <label htmlFor="rare-input">
+        <label htmlFor="cardRare">
           Raridade:
           <select
             data-testid="rare-input"
@@ -111,16 +105,19 @@ class Form extends Component {
           </select>
         </label>
 
-        <label htmlFor="trunfo-input">
+        <label htmlFor="cardTrunfo">
           Super Trybe Trunfo:
-          <input
+          { !hasTrunfo && <input
             data-testid="trunfo-input"
             checked={ cardTrunfo }
             onChange={ onInputChange }
             type="checkbox"
             id="trunfo-input"
             name="cardTrunfo"
-          />
+          />}
+          {
+            hasTrunfo && <p>Você já tem um Super Trunfo em seu baralho</p>
+          }
         </label>
         <button
           data-testid="save-button"
@@ -131,7 +128,7 @@ class Form extends Component {
         >
           Salvar
         </button>
-      </div>
+      </form>
     );
   }
 }
@@ -145,7 +142,7 @@ Form.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
-  /* hasTrunfo: PropTypes.bool.isRequired, */
+  hasTrunfo: PropTypes.bool.isRequired,
   isSaveButtonDisabled: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,

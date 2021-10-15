@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
 
-class App extends React.Component {
+class App extends Component {
   constructor() {
     super();
     this.onInputChange = this.onInputChange.bind(this);
@@ -18,6 +18,7 @@ class App extends React.Component {
       cardTrunfo: false,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
+      deck: [],
     };
   }
 
@@ -25,27 +26,67 @@ class App extends React.Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
       [target.name]: value,
-    });
+    }, () => this.enableButton());
   }
 
   onSaveButtonClick(event) {
     event.preventDefault();
+    const { cardName, cardDescription, cardImage, cardRare,
+      cardAttr1, cardAttr2, cardAttr3, cardTrunfo, deck } = this.state;
+    this.verifyTrunfo();
+    this.setState({
+      deck: [{
+        cardName,
+        cardDescription,
+        cardAttr1,
+        cardAttr2,
+        cardAttr3,
+        cardImage,
+        cardRare,
+        cardTrunfo,
+      },
+      ...deck,
+      ],
+    });
+    this.setState({
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
+      cardImage: '',
+      cardRare: 'Normal',
+      cardTrunfo: false,
+      isSaveButtonDisabled: true,
+    });
+  }
 
-    const { cardAttr1,
-      cardAttr2,
-      cardAttr3,
-    } = this.state;
+  verifyTrunfo() {
+    const { cardTrunfo } = this.state;
+    if (cardTrunfo) {
+      this.setState({
+        hasTrunfo: true,
+      });
+    }
+  }
 
+  validateBtn() {
+    const { cardName, cardDescription, cardImage, cardRare,
+      cardAttr1, cardAttr2, cardAttr3 } = this.state;
     const maxValue = 90;
-    const minValue = 0;
-    const totalValue = 210;
-    const valueSum = Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3);
-    const value1 = Number(cardAttr1) <= maxValue && Number(cardAttr1) >= minValue;
-    const value2 = Number(cardAttr2) <= maxValue && Number(cardAttr2) >= minValue;
-    const value3 = Number(cardAttr3) <= maxValue && Number(cardAttr3) >= minValue;
-    const sumImputs = Object.values(this.state).find((value) => value === '');
-
-    if (sumImputs === undefined && valueSum <= totalValue && value1 && value2 && value3) {
+    const maxSum = 210;
+    let firstCondition = false;
+    let secondCodition = false;
+    const sumAttr = Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3);
+    if (cardName !== '' && cardDescription !== '' && cardImage !== ''
+    && cardRare !== '') {
+      firstCondition = true;
+    }
+    if (cardAttr1 >= 0 && cardAttr1 <= maxValue && cardAttr2 >= 0 && cardAttr2 <= maxValue
+      && cardAttr3 >= 0 && cardAttr3 <= maxValue && sumAttr <= maxSum) {
+      secondCodition = true;
+    }
+    if (firstCondition && secondCodition) {
       this.setState({
         isSaveButtonDisabled: false,
       });
@@ -57,15 +98,23 @@ class App extends React.Component {
   }
 
   render() {
+    const { deck } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
         <Form
-          { ... this.state }
+          { ...this.state }
           onInputChange={ this.onInputChange }
           onSaveButtonClick={ this.onSaveButtonClick }
         />
-        <Card onInputChange={ this.onInputChange } { ...this.state } />
+        <Card
+          { ...this.state }
+          onInputChange={ this.onInputChange }
+          onSaveButtonClick={ this.onSaveButtonClick }
+        />
+        <section>
+          { deck.map((card) => <Card { ...card } key={ card.cardDescription } />)}
+        </section>
       </div>
     );
   }
