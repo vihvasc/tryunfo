@@ -26,7 +26,7 @@ class App extends Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
       [target.name]: value,
-    }, () => this.enableButton());
+    }, () => this.validateBtn());
   }
 
   onSaveButtonClick(event) {
